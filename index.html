@@ -1,75 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gemini - In-Game Currency</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gemini — Virtual Rewards (Partnered with Discord)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <div class="logo">💎 Gemini</div>
-  <div class="partner">Partnered with: <span>Discord</span></div>
-</header>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden>◇</div>
+        <div class="brand-text">
+          <div class="brand-name">Gemini</div>
+          <div class="brand-tag">Virtual Rewards • ChatPlay</div>
+        </div>
+      </div>
 
-<section class="balance-section">
-  <h2>Your Gemini Balance</h2>
-  <div id="balance">0 💎</div>
-  <div class="buttons">
-    <button>Earn Gemini</button>
-    <button>Redeem Gemini</button>
+      <nav class="top-actions">
+        <div class="partner">
+          <span class="partner-label">In partnership with</span>
+          <div class="partner-pill">
+            <svg class="partner-icon" viewBox="0 0 24 24" aria-hidden>
+              <path fill="currentColor" d="M12 2L15 8l6 .5-4.5 4 1 6L12 17l-5.5 1.5 1-6L3 8.5 9 8z"/>
+            </svg>
+            <span>Discord</span>
+          </div>
+        </div>
+
+        <button id="redeemBtn" class="btn btn-ghost">Redeem Gemini</button>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="hero card">
+        <div class="hero-left">
+          <h1 class="hero-title">Unlock exclusive themes, badges, and packs with <span class="accent">Gemini</span></h1>
+          <p class="muted">Seamless integration with ChatPlay. Earn Gemini from daily challenges, mini-games, and community events.</p>
+
+          <div class="stats-grid">
+            <div class="stat">
+              <div class="stat-label">Your Balance</div>
+              <div id="balance" class="stat-value" aria-live="polite">—</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Monthly Distributed</div>
+              <div class="stat-value">1.2M 💎</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Active Users</div>
+              <div class="stat-value">842k</div>
+            </div>
+          </div>
+
+          <div class="hero-cta">
+            <button class="btn btn-primary" id="earnBtn">Earn Gemini</button>
+            <button class="btn btn-outline" id="openFeed">View Activity</button>
+          </div>
+
+          <p class="disclaimer small">This is a fan-made prototype for demonstration. <strong>Not affiliated with Discord.</strong></p>
+        </div>
+
+        <div class="hero-right">
+          <div class="card mini">
+            <div class="card-head">Recent reward</div>
+            <div class="card-body">
+              <div class="reward">
+                <div class="reward-amount">+100</div>
+                <div class="reward-what">Mini-Game Victory</div>
+              </div>
+              <div class="reward-meta muted">Sep 18, 2025 • ChatPlay Arena</div>
+            </div>
+            <div class="card-footer muted">Tap to see more</div>
+          </div>
+
+          <div class="leader-cards">
+            <div class="leader card-small">
+              <div class="rank">1</div>
+              <img class="avatar" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'><rect rx='12' width='100%' height='100%' fill='%23728bd9'/></svg>" alt="">
+              <div class="meta"><div class="name">StarGamer42</div><div class="value">4,320</div></div>
+            </div>
+            <div class="leader card-small">
+              <div class="rank">2</div>
+              <img class="avatar" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'><rect rx='12' width='100%' height='100%' fill='%2399aab5'/></svg>" alt="">
+              <div class="meta"><div class="name">PixelNinja99</div><div class="value">3,875</div></div>
+            </div>
+            <div class="leader card-small">
+              <div class="rank">3</div>
+              <img class="avatar" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'><rect rx='12' width='100%' height='100%' fill='%23ffd66b'/></svg>" alt="">
+              <div class="meta"><div class="name">ChatMasterX</div><div class="value">3,450</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card grid-2">
+        <div>
+          <h3 class="section-title">Live Activity Feed</h3>
+          <div id="feed" class="feed">
+            <!-- populated by JS -->
+          </div>
+        </div>
+
+        <div>
+          <h3 class="section-title">Leaderboard</h3>
+          <div class="leaderboard">
+            <div class="leaderboard-row header">
+              <div>#</div><div>Player</div><div class="right">Gemini</div>
+            </div>
+            <div id="leaderboardRows">
+              <!-- populated by JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card faq">
+        <h3 class="section-title">Frequently asked questions</h3>
+        <details open>
+          <summary>How do I earn Gemini?</summary>
+          <p class="muted">Complete daily activities, participate in events, or win mini-games in ChatPlay.</p>
+        </details>
+        <details>
+          <summary>What can I redeem?</summary>
+          <p class="muted">Themes, badge slots, avatar frames, and limited-time emoji packs.</p>
+        </details>
+        <details>
+          <summary>Is Gemini real money?</summary>
+          <p class="muted">No — Gemini is a virtual reward currency and cannot be exchanged for real currency.</p>
+        </details>
+      </section>
+
+      <footer class="footer card">
+        <div class="footer-left">
+          <div class="foot-brand">© 2025 Gemini Inc.</div>
+          <div class="foot-links small muted"><a href="#">Privacy</a> • <a href="#">Terms</a> • <a href="#">Support</a></div>
+        </div>
+
+        <div class="footer-right small muted">
+          <div>Partnered with <strong>Discord</strong></div>
+          <div class="legal"><em>This prototype is fan-made for demonstration and is not affiliated with Discord.</em></div>
+        </div>
+      </footer>
+    </main>
   </div>
-</section>
 
-<section class="activity">
-  <h3>Recent Activity</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Activity</th>
-        <th>Gemini Earned</th>
-      </tr>
-    </thead>
-    <tbody id="transactions">
-      <tr><td>Sep 18, 2025</td><td>Daily Login Bonus</td><td>+50</td></tr>
-      <tr><td>Sep 18, 2025</td><td>Mini-Game Victory</td><td>+100</td></tr>
-      <tr><td>Sep 17, 2025</td><td>Redeemed Emoji Pack</td><td>-200</td></tr>
-    </tbody>
-  </table>
-</section>
+  <!-- Redeem Modal -->
+  <div id="redeemModal" class="modal" aria-hidden>
+    <div class="modal-panel">
+      <button class="modal-close" id="closeRedeem">&times;</button>
+      <h2>Redeem Gemini</h2>
+      <p class="muted">Choose an item to redeem with your Gemini balance.</p>
 
-<section class="leaderboard">
-  <h3>Top Players</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Rank</th>
-        <th>Player</th>
-        <th>Gemini</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>1</td><td>StarGamer42</td><td>4,320</td></tr>
-      <tr><td>2</td><td>PixelNinja99</td><td>3,875</td></tr>
-      <tr><td>3</td><td>ChatMasterX</td><td>3,450</td></tr>
-    </tbody>
-  </table>
-</section>
+      <div class="redeem-grid">
+        <div class="redeem-item">
+          <div class="item-name">Emoji Pack</div>
+          <div class="item-cost">200 💎</div>
+          <button class="btn btn-primary small" data-cost="200" data-name="Emoji Pack">Redeem</button>
+        </div>
+        <div class="redeem-item">
+          <div class="item-name">Profile Theme</div>
+          <div class="item-cost">450 💎</div>
+          <button class="btn btn-primary small" data-cost="450" data-name="Profile Theme">Redeem</button>
+        </div>
+        <div class="redeem-item">
+          <div class="item-name">Badge Slot</div>
+          <div class="item-cost">800 💎</div>
+          <button class="btn btn-primary small" data-cost="800" data-name="Badge Slot">Redeem</button>
+        </div>
+      </div>
 
-<section class="faq">
-  <h3>FAQ</h3>
-  <p><strong>How do I earn Gemini?</strong> Complete daily activities, mini-games, or challenges in ChatPlay.</p>
-  <p><strong>What can I buy with Gemini?</strong> Redeem exclusive themes, badges, and emoji packs.</p>
-  <p><strong>Can Gemini be exchanged for real money?</strong> No, Gemini is virtual currency for fun only.</p>
-</section>
+      <div id="redeemMsg" class="muted small"></div>
+    </div>
+  </div>
 
-<footer>
-  <p>© 2025 Gemini Inc. | Partnered with Discord</p>
-  <p><em>This is a fan-made project and not affiliated with Discord.</em></p>
-</footer>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
